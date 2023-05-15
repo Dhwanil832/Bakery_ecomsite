@@ -1,0 +1,301 @@
+{% extends 'ecomsite/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+ <!-- banner section -->
+    <section class="banner-section inner-page-banner">
+      <div class="container">
+        <h1 class="text-center">Products</h1>
+      </div>
+    </section>
+    <!-- end banner section -->
+    {% if a %}
+    <!-- product section -->
+    <section class="product-page section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="product-left-menu">
+              <div class="d-dm-none menu-line-icon" id="product-left-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <ul class="list-unstyled">
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#shop-by-product" role="button">SHOP BY CATEGORY</a>
+                <ul class="list-unstyled collapse" id="shop-by-product">
+                  {% for i in clist %}
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="{{i.c_name}}">
+                    <label class="custom-control-label" for="{{i.c_name}}" >{{i.c_name}}</label>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#shop-by-brand" role="button">SHOP BY BRAND</a>
+                <ul class="list-unstyled product-name-list collapse" id="shop-by-brand">
+                  {% for i in blist %}
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="{{i.b_name}}">
+                    <label class="custom-control-label" for="{{i.b_name}}" >{{i.b_name}}</label>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#shop-by-supplier" role="button">SHOP BY SUPPLIER</a>
+                <ul class="list-unstyled product-name-list collapse" id="shop-by-supplier">
+                  {% for i in slist %}
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="{{i.c_name}}">
+                    <label class="custom-control-label" for="{{i.c_name}}">{{i.c_name}}</label>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#seasonal-promotions" role="button">SEASONAL PROMOTIONS</a>
+                <ul class="list-unstyled product-name-list collapse" id="seasonal-promotions">
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="FlashSale">
+                    <label class="custom-control-label" for="FlashSale">Flash Sale</label>
+                  </li>
+                </ul>
+              </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-9">
+            <div class="row">
+              {% for i in a %}
+              <div class="col-xl-4 col-md-6">
+                <a href="{% url 'productdetail' id=i.prod_id %}">
+                <div class="single-product-box">
+                  {% if i.Flash_Sale %}
+                    <div class="sale-tag">FLASH SALE</div>
+                  {% elif i.Seasonal_Promotion %}
+                      <div class="sale-tag sale-tag2 sml-tag-text">SEASONAL PROMOTION</div>
+                  {% endif %}
+                  <img src='/media/{{i.prod_image}}' class="img-fluid product-img" alt="">
+                  <h4>{{i.prod_name}}</h4>
+                  <p>{{i.prod_desc}}</p>
+                  {%if request.session.user_id %}
+                    <div class="d-flex">
+                      <a href="javascript:void(0)" class="product-cart" onClick="addtocart('{{i.prod_id}}','{{request.session.user_id}}')"><img src='{%static "ecomsite/images/cart-icon.svg"%}' class="img-fluid" alt=""></a>
+                      <a href="javascript:void(0)" class="product-cart" onClick="wish('{{i.prod_id}}','{{request.session.user_id}}')"><img src='{%static "ecomsite/images/wishlist-icon.svg"%}' class="img-fluid" alt=""></a>
+                    </div>
+                  {%endif%}
+                </div></a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end product section -->
+    {% else %}
+    <!-- product section -->
+    <section class="product-page section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="product-left-menu">
+              <div class="d-dm-none menu-line-icon" id="product-left-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <ul class="list-unstyled">
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#shop-by-product" role="button">SHOP BY CATEGORY</a>
+                <ul class="list-unstyled collapse" id="shop-by-product">
+                  {% for i in clist %}
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="{{i.c_name}}">
+                    <label class="custom-control-label" for="{{i.c_name}}" >{{i.c_name}}</label>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#shop-by-brand" role="button">SHOP BY BRAND</a>
+                <ul class="list-unstyled product-name-list collapse" id="shop-by-brand">
+                  {% for i in blist %}
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="{{i.b_name}}">
+                    <label class="custom-control-label" for="{{i.b_name}}" >{{i.b_name}}</label>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#shop-by-supplier" role="button">SHOP BY SUPPLIER</a>
+                <ul class="list-unstyled product-name-list collapse" id="shop-by-supplier">
+                  {% for i in slist %}
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="{{i.c_name}}">
+                    <label class="custom-control-label" for="{{i.c_name}}">{{i.c_name}}</label>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#seasonal-promotions" role="button">SEASONAL PROMOTIONS</a>
+                <ul class="list-unstyled product-name-list collapse" id="seasonal-promotions">
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="FlashSale">
+                    <label class="custom-control-label" for="FlashSale">Flash Sale</label>
+                  </li>
+                </ul>
+              </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-9">
+            <div class="row">
+
+              {% for i in plist %}
+              <div class="col-xl-4 col-md-6">
+                <a href="{% url 'productdetail' id=i.prod_id %}">
+                <div class="single-product-box">
+                  {% if i.Flash_Sale %}
+                    <div class="sale-tag">FLASH SALE</div>
+                  {% elif i.Seasonal_Promotion %}
+                      <div class="sale-tag sale-tag2 sml-tag-text">SEASONAL PROMOTION</div>
+                  {% endif %}
+                  <img src='/media/{{i.prod_image}}' class="img-fluid product-img" alt="">
+                  <h4>{{i.prod_name}}</h4>
+                  <p>{{i.prod_desc}}</p>
+                  {%if request.session.user_id %}
+                    <div class="d-flex">
+                      <a href="javascript:void(0)" class="product-cart" onClick="addtocart('{{i.prod_id}}','{{request.session.user_id}}')"><img src='{%static "ecomsite/images/cart-icon.svg"%}' class="img-fluid" alt=""></a>
+                      <a href="javascript:void(0)" class="product-cart" onClick="wish('{{i.prod_id}}','{{request.session.user_id}}')"><img src='{%static "ecomsite/images/wishlist-icon.svg"%}' class="img-fluid" alt=""></a>
+                    </div>
+                  {%endif%}
+                </div></a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end product section -->
+    {% endif %}
+
+   <!-- product-sold section -->
+    <section class="product-sold-section section" data-aos="fade-down" data-aos-duration="3000">
+      <div class="container">
+        <div class="row">
+            {% for i in sell %}
+          <div class="col-lg-5 product-sold-content">
+            <h2 class="section-title">
+              <span>{{i.curcive_text}}</span>
+                {{i.text_1}} <label>{{i.text_2}}</label>
+            </h2>
+            <p>{{i.sub_text}}</p>
+            <a href="/register/" class="btn btn-bordered">Register Now</a>
+          </div>
+          <div class="col-lg-7 product-sold-img">
+            <img src='/media/{{i.sp_image}}' class="img-fluid" alt="">
+          </div>
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+    <!-- end product-sold section -->
+    <!-- work-with section -->
+    <section class="work-with-section section" data-aos="fade-down" data-aos-duration="1000">
+      <div class="container text-center">
+        <img src='{% static "ecomsite/images/suppliers-rnw.png" %}' alt="">
+        <h2 class="section-title">
+          <span>We work with</span>
+        </h2>
+        <div class="row align-items-center">
+            {% for i in wrk %}
+          <div class="col-6 col-md-3 work-with-logo">
+            <img src='/media/{{i.ww_image}}' class="img-fluid" alt="{{i.ww_name}}">
+          </div>
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+    <!-- end work-with section -->
+
+    <!-- manage-your section -->
+    <section class="manage-your-section section" data-aos="fade-up">
+        {% for i in m %}
+      <div class="container">
+        <div class="manage-bg">
+          <div class="row align-items-end">
+            <div class="col-lg-4 col-md-8">
+              <h3>{{i.title}}</h3>
+            </div>
+            <div class="col-lg-3 col-md-4">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="#" class="golden-bg"><img src='/media/{{i.icon_1}}' class="img-fluid" alt=""></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="dark-golden-bg"><img src=/media/{{i.icon_2}} class="img-fluid" alt=""></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="black-golden-bg"><img src=/media/{{i.icon_3}} class="img-fluid" alt=""></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="truck-img text-center">
+          <img src=/media/{{i.image}} class="img-fluid" alt="">
+        </div>
+      </div>
+        {% endfor %}
+    </section>
+    <!-- end manage-your section -->
+ <!-- our-fleet section -->
+    <section class="our-fleet-section section" data-aos="fade-up" data-aos-duration="1000">
+        {% for i in flet %}
+        <div class="container text-center">
+        <div class="row justify-content-center">
+          <div class="col-xl-9 col-lg-10">
+            <h2 class="section-title">{{i.title}}</h2>
+            <p class="text-para">{{i.para_1}}</p>
+            <p class="text-para">{{i.para_2}}</p>
+            <div class="text-center">
+              <a href="/register/" class="btn btn-fill mt-4">Register Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+    </section>
+    <!-- end our-fleet section -->
+ <!-- regions section -->
+    <section class="regions-section" data-aos="fade-up" data-aos-duration="1000">
+      {% for i in reg %}
+        <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-lg-6 px-0">
+            <img src='/media/{{i.image}}' class="w-100" alt="">
+          </div>
+          <div class="col-lg-6 regions-content">
+            <h2 class="section-title">
+              <span>{{i.title}}</span>
+            </h2>
+            <p class="text-para">{{i.para_1}}</p>
+            <p class="text-para">{{i.para_2}}</p>
+            <a href="{{i.link}}" class="btn btn-fill mt-4">Contact Us</a>
+          </div>
+        </div>
+      </div>
+       {% endfor %}
+    </section>
+
+
+{% endblock %}

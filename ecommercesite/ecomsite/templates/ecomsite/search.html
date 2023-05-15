@@ -1,0 +1,38 @@
+{% extends 'ecomsite/main.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<section class="banner-section inner-page-banner">
+      <div class="container">
+        <h1 class="text-center">Search results</h1>
+      </div>
+    </section>
+
+
+<div class="container my-3">
+    {% for i in allPosts  %}
+    <a href="{% url 'productdetail' id=i.prod_id %}">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="section-title mb-0">{{i.prod_name}}</h3>
+            <div class="mb-1 text-muted">{{i.prod_Brand}}</div>
+            <p class=" text-para card-text mb-auto">{{i.prod_desc| truncatechars:500}}</p>
+
+
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                <title>Placeholder</title>
+                <img src='/media/{{i.prod_image}}'>
+            </svg>
+        </div>
+
+  </div>
+    </a>
+              <button type="button" class="btn btn-fill btn-add-cart mt-3"><img src='{% static "ecomsite/images/cart-icon-white.svg" %}' class="img-fluid" alt=""> ADD TO CART</button>
+        {% endfor %}
+</div>
+ {% endblock %}

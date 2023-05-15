@@ -1,0 +1,15 @@
+{% load static %}
+{% for i in plist %}
+<a href="{% url 'productdetail' id=i.prod_id %}">
+    <div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+              <div class="single-product-box">
+                <img src="/media/{{i.prod_image}}" class="img-fluid product-img" alt="">
+                <h4>{{i.prod_name}}</h4>
+                <p>{{i.prod_desc}}</p>
+                <div class="d-flex">
+                    <a href="#" class="product-cart"><img src='{% static "ecomsite/images/cart-icon.svg"%}' class="img-fluid" alt=""></a>
+                    <a href="#" class="product-cart"><img src='{% static "ecomsite/images/wishlist-icon.svg" %}' class="img-fluid" alt=""></a>
+                </div>
+              </div>
+    </div></a>
+{% endfor %}

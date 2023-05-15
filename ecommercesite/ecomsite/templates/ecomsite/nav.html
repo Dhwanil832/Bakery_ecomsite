@@ -1,0 +1,75 @@
+{% load static %}
+    <header class="fixed-top" id="top-nav-fixed">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand">
+                    <img src='{% static "ecomsite/images/logo.png" %}' class="img-fluid" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main"
+                    aria-controls="navbar-main" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="header-right">
+                  <div class="top-header">
+                    <ul class="list-inline">
+                      <li class="list-inline-item header-serach">
+                          <form method="get" action="/search">
+                              <a href="javascript:void(0);" class="search-icon"><img src='{% static "ecomsite/images/search-icon.svg" %}'  alt=""></a>
+                              <input type="text" class="form-control" placeholder="search" name="query" id="search">
+                          </form>
+
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="mailto:sales@rnwent.ca" class="email d-none d-md-inline-flex"><img src='{% static "ecomsite/images/email-icon.svg"%}' alt=""> contactme@gmail.com</a>
+                        <a href="mailto:sales@rnwent.ca" class="email d-md-none"><img src='{% static "ecomsite/images/email-icon.svg"%}' alt=""></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="tel:18001234567" class="d-none d-md-inline-flex"><img src='{% static "ecomsite/images/phone-icon.svg"%}' alt=""> +91 7284033848</a>
+                        <a href="tel:18001234567" class="d-md-none"><img src='{% static "ecomsite/images/phone-icon.svg"%}' alt=""></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="tel:+19058583261" class="d-none d-md-inline-flex"><img src='{% static "ecomsite/images/phone-icon.svg"%}' alt=""> +91 8401406976</a>
+                      </li>
+
+                        {% if request.session.user_id %}
+                      <li class="list-inline-item dropdown">
+                        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"><img src='{% static "ecomsite/images/user-icon.svg"%}' alt="">{{request.session.user_name}}</a>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="/logout">Log Out</a>
+                        </div>
+                      </li>
+                        {% else %}
+
+                      <li class="list-inline-item dropdown">
+                        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"><img src='{% static "ecomsite/images/user-icon.svg"%}' alt=""> Login/Register</a>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="/login/">Login</a>
+                          <a class="dropdown-item" href="/register/">Register</a>
+                        </div>
+                      </li>
+                        {% endif %}
+                    </ul>
+                  </div>
+
+                  <div class="main-menu">
+                    <div class="collapse navbar-collapse" id="navbar-main">
+                      <ul class="navbar-nav ml-auto">
+                          <li class="nav-item {% if request.path == '/' %} active {% endif %}"><a class="nav-link" href="/">Home</a></li>
+                          <li class="nav-item {% if request.path == '/aboutus/' %} active {% endif %}"><a class="nav-link" href="/aboutus/">About Us</a></li>
+                          <li class="nav-item dropdown {% if request.path == '/product/' %} active {% endif %}"><a class="nav-link" href="/product/">Product</a></li>
+                          <li class="nav-item {% if request.path == '/flashsale/' %} active {% endif %}"><a class="nav-link" href="/flashsale/">Flash Sale</a></li>
+                          <li class="nav-item {% if request.path == '/seasonalpromotion/' %} active {% endif %}"><a class="nav-link" href="/seasonalpromotion/">Seasonal Promotion</a></li>
+                          <li class="nav-item {% if request.path == '/contactus/' %} active {% endif %}"><a class="nav-link" href="/contactus/">Contact Us</a></li>
+                          <li class="nav-item icon-menu">
+                            {%if request.session.user_id %}
+                                <a class="nav-link wish-list {% if request.path == '/wishlist/' %} active {% endif %}" href="/wishlist/"><img src='{%static "ecomsite/images/wishlist-icon.svg"%}' class="img-fluid" alt=""></a>
+                                <a class="nav-link cart {% if request.path == '/cart/' %} active {% endif %}" href="/cart/"><img src='{%static "ecomsite/images/cart-icon.svg"%}' class="img-fluid mr-2" alt=""><span id="total_qty">0</span> / $ <span id="sub_total">0</span></a>
+                            {%endif%}
+                          </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </nav>
+        </div>
+    </header>

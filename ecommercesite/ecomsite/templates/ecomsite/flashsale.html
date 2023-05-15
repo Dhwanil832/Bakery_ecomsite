@@ -1,0 +1,308 @@
+{% extends 'ecomsite/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- banner section -->
+    <section class="banner-section inner-page-banner">
+      <div class="container">
+        <h1 class="text-center">Flash Sale</h1>
+      </div>
+    </section>
+<!-- end banner section -->
+
+ <!-- product section -->
+    <section class="product-page section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="product-left-menu">
+              <div class="d-dm-none menu-line-icon" id="product-left-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <ul class="list-unstyled">
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#shop-by-product" role="button">SHOP BY PRODUCT</a>
+                <ul class="list-unstyled collapse" id="shop-by-product">
+                  <li class="list-title">
+                    <a class="collapsed" data-toggle="collapse" href="#product-cupcakes" role="button">CUPCAKES</a>
+                    <ul class="list-unstyled product-name-list collapse" id="product-cupcakes">
+                      <li class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="ProductName1">
+                        <label class="custom-control-label" for="ProductName1">Product Name 1</label>
+                      </li>
+                      <li class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="ProductName2">
+                        <label class="custom-control-label" for="ProductName2">Product Name 2</label>
+                      </li>
+                      <li class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="ProductName3">
+                        <label class="custom-control-label" for="ProductName3">Product Name 3</label>
+                      </li>
+                      <li class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="ProductName4">
+                        <label class="custom-control-label" for="ProductName4">Product Name 4</label>
+                      </li>
+                      <li class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="ProductName5">
+                        <label class="custom-control-label" for="ProductName5">Product Name 5</label>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="list-title">
+                    <a class="collapsed" data-toggle="collapse" href="#product-brownies" role="button">BROWNIES</a>
+                  </li>
+                  <li class="list-title">
+                    <a class="collapsed" data-toggle="collapse" href="#product-cinnamon-rolls" role="button">CINNAMON ROLLS</a>
+                  </li>
+                  <li class="list-title">
+                    <a class="collapsed" data-toggle="collapse" href="#product-cookies" role="button">COOKIES</a>
+                  </li>
+                  <li class="list-title">
+                    <a class="collapsed" data-toggle="collapse" href="#product-crossiants" role="button">CROSSIANTS</a>
+                  </li>
+                  <li class="list-title">
+                    <a class="collapsed" data-toggle="collapse" href="#product-muffins" role="button">MUFFINS</a>
+                  </li>
+                  <li class="list-title">
+                    <a class="collapsed" data-toggle="collapse" href="#product-macaroons" role="button">MACAROONS</a>
+                  </li>
+                  <li class="list-title">
+                    <a class="collapsed" data-toggle="collapse" href="#product-granola" role="button">GRANOLA</a>
+                  </li>
+                  <li class="list-title">
+                    <a class="collapsed" data-toggle="collapse" href="#product-tarts" role="button">TARTS</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#shop-by-brand" role="button">SHOP BY BRAND</a>
+                <ul class="list-unstyled product-name-list collapse" id="shop-by-brand">
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="Brand1">
+                    <label class="custom-control-label" for="Brand1">Brand 1</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="Brand2">
+                    <label class="custom-control-label" for="Brand2">Brand 2</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="Brand3">
+                    <label class="custom-control-label" for="Brand3">Brand 3</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="Brand4">
+                    <label class="custom-control-label" for="Brand4">Brand 4</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="Brand5">
+                    <label class="custom-control-label" for="Brand5">Brand 5</label>
+                  </li>
+                </ul>
+              </li>
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#shop-by-supplier" role="button">SHOP BY SUPPLIER</a>
+                <ul class="list-unstyled product-name-list collapse" id="shop-by-supplier">
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="TwoBites">
+                    <label class="custom-control-label" for="TwoBites">Two Bites</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="CreateTreat">
+                    <label class="custom-control-label" for="CreateTreat">Create a Treat</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="MasonBakehouse">
+                    <label class="custom-control-label" for="MasonBakehouse">Mason St. Bakehouse</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="KimberleyBakehouse">
+                    <label class="custom-control-label" for="KimberleyBakehouse">Kimberley’s Bakehouse</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="TheWorthyCrumb">
+                    <label class="custom-control-label" for="TheWorthyCrumb">The Worthy Crumb</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="GiveGo">
+                    <label class="custom-control-label" for="GiveGo">Give & Go</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="PrimePastries">
+                    <label class="custom-control-label" for="PrimePastries">Prime Pastries</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="CanadaBread">
+                    <label class="custom-control-label" for="CanadaBread">Canada Bread</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="LaPetiteBretonne">
+                    <label class="custom-control-label" for="LaPetiteBretonne">La Petite Bretonne</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="Mondelez">
+                    <label class="custom-control-label" for="Mondelez">Mondelez</label>
+                  </li>
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="DempstersBakery">
+                    <label class="custom-control-label" for="DempstersBakery">Dempsters Bakery</label>
+                  </li>
+                </ul>
+              </li>
+              <li class="list-title">
+                <a class="collapsed" data-toggle="collapse" href="#seasonal-promotions" role="button">SEASONAL PROMOTIONS</a>
+                <ul class="list-unstyled product-name-list collapse" id="seasonal-promotions">
+                  <li class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="FlashSale">
+                    <label class="custom-control-label" for="FlashSale">Flash Sale</label>
+                  </li>
+                </ul>
+              </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-9">
+            <div class="row">
+              {% for i in plist %}
+                {% if i.Flash_Sale %}
+              <div class="col-xl-4 col-md-6">
+                <div class="single-product-box">
+
+                    <div class="sale-tag">FLASH SALE</div>
+                  <img src='/media/{{i.prod_image}}' class="img-fluid product-img" alt="">
+                  <h4>{{i.prod_name}}</h4>
+                  <p>{{i.prod_desc}}</p>
+                  <div class="d-flex">
+                    {%if request.session.user_id %}
+                     <a href="javascript:void(0)" class="product-cart" onClick="addtocart('{{i.prod_id}}','{{request.session.user_id}}')"><img src='{% static "ecomsite/images/cart-icon.svg"%}' class="img-fluid" alt=""></a>
+                    <a href="javascript:void(0)" class="product-cart" onClick="wish('{{i.prod_id}}','{{request.session.user_id}}')"><img src='{% static "ecomsite/images/wishlist-icon.svg" %}' class="img-fluid" alt=""></a>
+                  </div>
+                    {%endif%}
+                </div>
+
+              </div>
+                {% endif %}
+
+
+              {% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end product section -->
+
+ <!-- product-sold section -->
+    <section class="product-sold-section section" data-aos="fade-down" data-aos-duration="3000">
+      <div class="container">
+        <div class="row">
+            {% for i in sell %}
+          <div class="col-lg-5 product-sold-content">
+            <h2 class="section-title">
+              <span>{{i.curcive_text}}</span>
+                {{i.text_1}} <label>{{i.text_2}}</label>
+            </h2>
+            <p>{{i.sub_text}}</p>
+            <a href="/register/" class="btn btn-bordered">Register Now</a>
+          </div>
+          <div class="col-lg-7 product-sold-img">
+            <img src='/media/{{i.sp_image}}' class="img-fluid" alt="">
+          </div>
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+    <!-- end product-sold section -->
+    <!-- work-with section -->
+    <section class="work-with-section section" data-aos="fade-down" data-aos-duration="1000">
+      <div class="container text-center">
+        <img src='{% static "ecomsite/images/suppliers-rnw.png" %}' alt="">
+        <h2 class="section-title">
+          <span>We work with</span>
+        </h2>
+        <div class="row align-items-center">
+            {% for i in wrk %}
+          <div class="col-6 col-md-3 work-with-logo">
+            <img src='/media/{{i.ww_image}}' class="img-fluid" alt="{{i.ww_name}}">
+          </div>
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+    <!-- end work-with section -->
+
+    <!-- manage-your section -->
+    <section class="manage-your-section section" data-aos="fade-up">
+        {% for i in m %}
+      <div class="container">
+        <div class="manage-bg">
+          <div class="row align-items-end">
+            <div class="col-lg-4 col-md-8">
+              <h3>{{i.title}}</h3>
+            </div>
+            <div class="col-lg-3 col-md-4">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a href="#" class="golden-bg"><img src='/media/{{i.icon_1}}' class="img-fluid" alt=""></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="dark-golden-bg"><img src=/media/{{i.icon_2}} class="img-fluid" alt=""></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="black-golden-bg"><img src=/media/{{i.icon_3}} class="img-fluid" alt=""></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="truck-img text-center">
+          <img src=/media/{{i.image}} class="img-fluid" alt="">
+        </div>
+      </div>
+        {% endfor %}
+    </section>
+    <!-- end manage-your section -->
+ <!-- our-fleet section -->
+    <section class="our-fleet-section section" data-aos="fade-up" data-aos-duration="1000">
+        {% for i in flet %}
+        <div class="container text-center">
+        <div class="row justify-content-center">
+          <div class="col-xl-9 col-lg-10">
+            <h2 class="section-title">{{i.title}}</h2>
+            <p class="text-para">{{i.para_1}}</p>
+            <p class="text-para">{{i.para_2}}</p>
+            <div class="text-center">
+              <a href="/register/" class="btn btn-fill mt-4">Register Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+    </section>
+    <!-- end our-fleet section -->
+ <!-- regions section -->
+    <section class="regions-section" data-aos="fade-up" data-aos-duration="1000">
+      {% for i in reg %}
+        <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-lg-6 px-0">
+            <img src='/media/{{i.image}}' class="w-100" alt="">
+          </div>
+          <div class="col-lg-6 regions-content">
+            <h2 class="section-title">
+              <span>{{i.title}}</span>
+            </h2>
+            <p class="text-para">{{i.para_1}}</p>
+            <p class="text-para">{{i.para_2}}</p>
+            <a href="{{i.link}}" class="btn btn-fill mt-4">Contact Us</a>
+          </div>
+        </div>
+      </div>
+       {% endfor %}
+    </section>
+
+{% endblock %}

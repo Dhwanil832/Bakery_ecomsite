@@ -1,0 +1,197 @@
+{% extends 'ecomsite/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+    <!-- banner section -->
+    <section class="banner-section inner-page-banner product-detail-banner">
+      <!-- <div class="container">
+        <h1 class="text-center">Products</h1>
+      </div> -->
+    </section>
+    <!-- end banner section -->
+
+    <!-- product-detail-page -->
+    <section class="product-detail-page section page-cacke-bg">
+      {% for i in a %}
+
+      <div class="container">
+        <!-- product-detail-section -->
+        <div class="product-detail-section">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="product-detail-img">
+
+                {% if i.Flash_Sale %}
+                    <div class="sale-tag">FLASH SALE</div>
+                  {% elif i.Seasonal_Promotion %}
+                      <div class="sale-tag sale-tag2 sml-tag-text">SEASONAL PROMOTION</div>
+                  {% endif %}
+                <img src='/media/{{i.prod_image}}' class="img-fluid" alt="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="brdr-btm">
+                <h2 class="product-name-detail">
+                  <span>{{i.prod_catagory}}  </span>
+                  {{i.prod_name}}
+                </h2>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p>Brand: {{i.prod_Brand}}</p>
+                  </div>
+                  <div class="col-sm-6 text-sm-right">
+                    <p>Product ID: {{i.prod_id}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="brdr-btm">
+                <p class="product-price">${{i.prod_price_per_unit}}<span>/Unit</span></p>
+              </div>
+              <div class="brdr-btm">
+                <p>{{i.prod_details}}</p>
+              </div>
+              {%if request.session.user_id %}
+              <button type="button" class="btn btn-fill btn-add-cart mt-3" onClick="addtocart('{{i.prod_id}}','{{request.session.user_id}}')"><img src='{% static "ecomsite/images/cart-icon-white.svg"%}' class="img-fluid" alt=""> ADD TO CART</button>
+              <button type="button" class="btn btn-bordered btn-add-cart mt-3" onClick="wish('{{i.prod_id}}','{{request.session.user_id}}')"><img src='{% static "ecomsite/images/wishlist-icon.svg"%}' class="img-fluid" alt="">WISHLIST</button>
+
+
+              {%endif%}
+            </div>
+          </div>
+        </div>
+        <!-- end product-detail-section -->
+
+        <!-- accordion-product-detail -->
+        <div class="accordion" id="accordion-product-detail">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 data-toggle="collapse" data-target="#collapseOne">
+                  Our Guarantee
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" data-parent="#accordion-product-detail">
+              <div class="card-body">
+                <p class="text-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique ultrices urna, vitae euismod arcu feugiat sed. Pellentesque semper consequat odio, finibus sodales metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis eget mauris lacinia, rhoncus metus sit amet, porta purus. Sed eu feugiat nisl. Curabitur porttitor sed nisl non sollicitudin. Donec iaculis ipsum vitae ex pellentesque, lacinia tristique nibh interdum. Etiam quis leo efficitur, vulputate lacus nec, fringilla turpis. Sed euismod ante quis est luctus dictum.</p>
+                <p class="text-para">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi malesuada pulvinar lobortis. Ut aliquet diam eget convallis porta. Cras quis porttitor orci, in elementum odio. Vivamus tempor, ipsum ut lobortis finibus, quam enim feugiat metus, eget fermentum velit lacus ac neque.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="collapsed" data-toggle="collapse" data-target="#collapseTwo">
+                  Returns
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" data-parent="#accordion-product-detail">
+              <div class="card-body">
+                <p class="text-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique ultrices urna, vitae euismod arcu feugiat sed. Pellentesque semper consequat odio, finibus sodales metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis eget mauris lacinia, rhoncus metus sit amet, porta purus. Sed eu feugiat nisl. Curabitur porttitor sed nisl non sollicitudin. Donec iaculis ipsum vitae ex pellentesque, lacinia tristique nibh interdum. Etiam quis leo efficitur, vulputate lacus nec, fringilla turpis. Sed euismod ante quis est luctus dictum.</p>
+                <p class="text-para">Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi malesuada pulvinar lobortis. Ut aliquet diam eget convallis porta. Cras quis porttitor orci, in elementum odio. Vivamus tempor, ipsum ut lobortis finibus, quam enim feugiat metus, eget fermentum velit lacus ac neque.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end accordion-product-detail -->
+
+        <!-- recently-viewed-product -->
+        <div class="recently-viewed-product">
+          <h2 class="product-page-title">RECENTLY VIEWED</h2>
+          <div class="row" id="recent_products_container">
+
+          </div>
+        </div>
+        <!-- end recently-viewed-product -->
+
+        <!-- intrested-product -->
+        {% for j in a %}
+            {% for i in plist %}
+            {% if i.prod_cat == j.prod_cat and i.prod_id != j.prod_id %}
+        <div class="intreseted-products">
+          <h2 class="product-page-title">YOU MIGHT BE INTRESETED <span class="d-block">IN THESE PRODUCTS</span></h2>
+          <div class="row" id="mightbeintrested">
+            <a href="{% url 'productdetail' id=i.prod_id %}"><div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+              <div class="single-product-box">
+                <img  src="/media/{{i.prod_image}}"  class="img-fluid product-img" alt=""><!--image-->
+                <h4>{{i.prod_name}}</h4>
+                <p>{{i.prod_desc}}</p>
+                <div class="d-flex">
+                  <a href="#" class="product-cart"><img src='{% static "ecomsite/images/cart-icon.svg"%}' class="img-fluid" alt=""></a>
+                  <a href="#" class="product-cart"><img src='{% static "ecomsite/images/wishlist-icon.svg" %}' class="img-fluid" alt=""></a>
+                </div>
+              </div>
+            </div></a>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+
+
+          </div>
+        </div>
+        <!-- end recently-viewed-product -->
+
+      </div>
+      {% endfor %}
+    </section>
+    <!-- end product-detail-page -->
+{%endblock%}
+
+
+{%block js%}
+<script>
+
+$(function(){
+  StoreRecentProducts();
+  GetRecentViewProducts();
+})
+
+function containsObject(obj, list) {
+    var x;
+    for (x in list) {
+        if (list.hasOwnProperty(x) && list[x] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+function StoreRecentProducts(){
+  var id = '{{id}}'
+  var main_array = [];
+  var previouse_items = JSON.parse(window.localStorage.getItem('viewed_items'))
+  if(previouse_items === null){
+    main_array = [id]
+  }else{
+    if (containsObject(id,previouse_items)==true)
+    {
+      main_array = previouse_items
+    }
+    else
+    {
+      previouse_items.push(id)
+      main_array = previouse_items
+    }
+  }
+  window.localStorage.setItem('viewed_items', JSON.stringify(main_array));
+}
+
+function GetRecentViewProducts(){
+    var cpare = localStorage.getItem("viewed_items");
+
+
+    $.ajax({
+      method:'POST',
+      url:'{% url 'get_recent_products'  %}',
+      data:{ products:cpare, csrfmiddlewaretoken: document.querySelector('input[name="csrfmiddlewaretoken"]').value },
+      dataType:'html',
+      success:function(response){
+        $("#recent_products_container").html(response)
+      }
+    })
+}
+</script>
+
+{%endblock%}

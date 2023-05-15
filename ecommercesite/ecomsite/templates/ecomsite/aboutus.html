@@ -1,0 +1,107 @@
+{% extends 'ecomsite/main.html' %}
+{% load static %}
+
+{% block content %}
+ <!-- banner section -->
+    <section class="banner-section inner-page-banner">
+      <div class="container">
+        <h1 class="text-center">About Us</h1>
+      </div>
+    </section>
+    <!-- end banner section -->
+<!-- our-story section -->
+
+ <section class="our-story-section section ">
+     {% for i in stry %}
+      <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 col-lg-10" data-aos="fade-up" data-aos-duration="3000">
+              <h2 class="section-title">
+
+                <span>{{i.story_title}}</span>
+                {{i.bold_title}}
+              </h2>
+              <p class="text-para">{{i.para1}}</p>
+              <p class="text-para">{{i.para2}}</p>
+              <div class="text-center">
+                <a href="{{i.btn_link}}" class="btn btn-fill mt-3">Read More</a>
+              </div>
+            </div>
+          </div>
+      </div>
+     {% endfor %}
+    </section>
+<!-- end our-story section -->
+<!-- why-choose section -->
+    <section class="why-choose-section section">
+      <div class="container text-center">
+        <h2 class="section-title">
+          WHY
+          <span>Choose Us</span>
+        </h2>
+        <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
+            {% for i in cu %}
+            <div class="col-md-4">
+        <div class="card-transparent">
+          <div class="why-single-box" data-aos="fade-up" data-aos-duration="3000">
+              <img src='/media/{{i.card_image}}'>
+              <h4><span class="d-block">{{i.card_tite_1}}</span> {{i.card_tite_2}}</h4>
+              <p>{{i.card_content}}</p>
+            </div>
+
+
+          </div>
+        </div>
+            {% endfor %}
+
+      </div>
+        </div>
+        <div class="text-center">
+          <a href="javascript:void(0);" class="btn btn-bordered btn-lg mt-2 mt-md-5">Register Now</a>
+        </div>
+      </div>
+    </section>
+    <!-- end why-choose section -->
+<!-- our-fleet section -->
+    <section class="our-fleet-section section" data-aos="fade-up" data-aos-duration="1000">
+        {% for i in flet %}
+        <div class="container text-center">
+        <div class="row justify-content-center">
+          <div class="col-xl-9 col-lg-10">
+            <h2 class="section-title">{{i.title}}</h2>
+            <p class="text-para">{{i.para_1}}</p>
+            <p class="text-para">{{i.para_2}}</p>
+            <div class="text-center">
+              <a href="{{i.link}}" class="btn btn-fill mt-4">Register Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+    </section>
+    <!-- end our-fleet section -->
+ <!-- regions section -->
+    <section class="regions-section" data-aos="fade-up" data-aos-duration="1000">
+      {% for i in reg %}
+        <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-lg-6 px-0">
+            <img src='/media/{{i.image}}' class="w-100" alt="">
+          </div>
+          <div class="col-lg-6 regions-content">
+            <h2 class="section-title">
+              <span>{{i.title}}</span>
+            </h2>
+            <p class="text-para">{{i.para_1}}</p>
+            <p class="text-para">{{i.para_2}}</p>
+            <a href="{{i.link}}" class="btn btn-fill mt-4">Contact Us</a>
+          </div>
+        </div>
+      </div>
+       {% endfor %}
+    </section>
+    <!-- end regions section -->
+
+
+
+{% endblock %}

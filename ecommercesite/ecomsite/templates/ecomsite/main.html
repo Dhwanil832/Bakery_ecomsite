@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+        <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href='{% static "ecomsite/images/favicon.ico" %}'>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href='{% static "ecomsite/css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{% static "ecomsite/css/font-awesome.min.css" %}'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href='{% static "ecomsite/css/jcarousel.responsive.css" %}'>
+    <link rel="stylesheet" href='{% static "ecomsite/css/aos.css" %}'>
+    <link rel="stylesheet" href='{% static "ecomsite/css/default.css" %}'>
+    <link rel="stylesheet" href='{% static "ecomsite/css/media.css" %}'>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{% static 'ecomsite/js/jquery.min.js' %}"></script>
+
+    <script src="{% static 'ecomsite/toastr/toastr.min.js' %}" ></script>
+    <link rel="stylesheet" href="{% static 'ecomsite/toastr/toastr.min.css' %}"  />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            timeOut: 40000
+        };
+
+    </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <title>RNW</title>
+</head>
+<body>
+{% csrf_token %}
+ {% load static %}
+ {% include 'ecomsite/nav.html' %}
+ {%block content%}
+ {%endblock%}
+ {% include 'ecomsite/footer.html' %}
+
+ <script src='{% static "ecomsite/js/jquery-3.3.1.slim.min.js"%}'></script>
+    <script src='{% static "ecomsite/js/jquery.min.js"%}'></script>
+ <script src='{% static "ecomsite/js/popper.min.js"%}'></script>
+<script src='{% static "ecomsite/js/bootstrap.min.js"%}'></script>
+
+    <!-- jcarousel -->
+    <script src='{% static "ecomsite/js/jquery.jcarousel.min.js"%}'></script>
+    <!-- aos -->
+    <script src='{% static "ecomsite/js/aos.js"%}'></script>
+
+    <script>
+      $(document).ready(function () {
+
+          // scroll to fixed menu
+          window.onscroll = function () { myFunction() };
+          var header = document.getElementById("top-nav-fixed");
+          var sticky = header.offsetTop;
+
+          function myFunction() {
+              if (window.pageYOffset > sticky) {
+                  header.classList.add("sticky");
+              } else {
+                  header.classList.remove("sticky");
+              }
+          };
+
+          //search-icon
+          $(".search-icon").click(function(){
+            $(".header-serach").addClass("search-expand");
+            $(".navbar-expand-lg ").addClass("add-search");
+          });
+
+          // jcarousel
+          (function($) {
+            $(function() {
+                var jcarousel = $('.jcarousel');
+
+                jcarousel
+                    .on('jcarousel:reload jcarousel:create', function() {
+                        var carousel = $(this),
+                            width = carousel.innerWidth();
+
+                        if (width >= 992) {
+                            width = width / 5;
+                        } else if (width >= 600) {
+                            width = width / 3;
+                        } else if (width >= 500) {
+                            width = width / 2;
+                        }
+
+                        carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
+                    })
+                    .jcarousel({
+                        wrap: 'circular'
+                    })
+
+                $('.jcarousel-control-prev')
+                    .jcarouselControl({
+                        target: '-=1'
+                    });
+
+                $('.jcarousel-control-next')
+                    .jcarouselControl({
+                        target: '+=1'
+                    });
+
+                $('.jcarousel-pagination')
+                    .on('jcarouselpagination:active', 'a', function() {
+                        $(this).addClass('active');
+                    })
+                    .on('jcarouselpagination:inactive', 'a', function() {
+                        $(this).removeClass('active');
+                    })
+                    .on('click', function(e) {
+                        e.preventDefault();
+                    })
+            });
+
+            })(jQuery);
+
+          //on scroll animation
+          AOS.init();
+
+      });
+
+    </script>
+
+<script>
+      function addtocart(id,user){
+
+          var product_id = id;
+          var logged_id = user;
+          $.ajax({
+            url:'{% url 'add_to_cart'  %}',
+            method:'POST',
+            dataType:'JSON',
+            data:{user:logged_id,product_id:product_id,csrfmiddlewaretoken: document.querySelector('input[name="csrfmiddlewaretoken"]').value},
+            success:function(res){
+              if(res.error === true){
+                  toastr.success(res.msg)
+              }else{
+                toastr.error(res.msg)
+              }
+            }
+          })
+      }
+
+function wish(id,user){
+
+          var product_id = id;
+          var logged_id = user;
+          $.ajax({
+            url:'{% url 'add_to_wish'  %}',
+            method:'POST',
+            dataType:'JSON',
+            data:{user:logged_id,product_id:product_id,csrfmiddlewaretoken: document.querySelector('input[name="csrfmiddlewaretoken"]').value},
+            success:function(res){
+              if(res.error === true){
+                  toastr.success(res.msg)
+              }else{
+                toastr.error(res.msg)
+              }
+            }
+          })
+      }
+
+
+
+     function GetCartInfo(){
+      $.ajax({
+      url:'{% url 'cart_info'  %}',
+      method:'GET',
+      dataType:'JSON',
+      data:{},
+      success:function(res){
+        if(res.error === true){
+              $("#total_qty").text(res.data.total_qty);
+              $("#sub_total").text(res.data.sub_total);
+        }else{ 
+
+        }
+      }
+    })
+}
+
+$(function(){
+  GetCartInfo();
+})
+
+    </script>
+
+ {%block js%}
+{%endblock%}
+</body>
+</html>

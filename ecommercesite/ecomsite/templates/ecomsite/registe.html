@@ -1,0 +1,167 @@
+{% extends 'ecomsite/main.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- banner section -->
+    <section class="banner-section inner-page-banner product-detail-banner">
+    </section>
+    <!-- end banner section -->
+
+ <!-- product-detail-page -->
+    <section class="login-page section">
+      <div class="container">
+        <h1 class="page-title page-title-line">Don’t have an account? <span class="d-block">Create a new one!</span></h1>
+        {% if error.error %}
+            <div class="alert alert-danger">
+              <strong>{{error.error}}</strong>
+            </div>
+        {% endif %}
+        <form action="/register/" method="post">{% csrf_token %}
+
+          <h3 class="other-title">Contact Info.</h3>
+          <div class="row register-form">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" id="confpasswd" name="confpasswd" placeholder="Confirm Password">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+              </div>
+            </div>
+          </div>
+          <div class="row register-form mt-4">
+            <div class="col-lg-6">
+              <h3 class="other-title">Billing Address</h3>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Street Address</label>
+                    <input type="text" class="form-control" id="streetadd" name="streetadd" placeholder="Street Address">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Postal Code</label>
+                    <input type="text" class="form-control" id="postalcode" name="postalcode" placeholder="Postal Code">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Province</label>
+                    <input type="text" class="form-control" id="provunce" name="provunce" placeholder="Province">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" class="form-control" id="country" name="country" placeholder="Country">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 shipping-address">
+              <h3 class="other-title">Shipping Address</h3>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="Shipping-Address-Same" id="Shipping-Address-Same">
+                <label class="custom-control-label" for="Shipping-Address-Same">Shipping Address Same as Billing Address</label>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Street Address</label>
+                    <input type="text" class="form-control" id="shipsa" name="shipsa" placeholder="Street Address">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" id="shipcity" name="shipcity" placeholder="City">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Postal Code</label>
+                    <input type="text" class="form-control" id="shippostalode" name="shippostalode" placeholder="Postal Code">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Province</label>
+                    <input type="text" class="form-control" id="shipprovince" name="shipprovince" placeholder="Province">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" class="form-control" id="shipcountry" name="shipcountry" placeholder="Country">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-md-5 pt-3">
+            <div class="col-6 col-md-6"><a href="/login/">
+              <button type="submit" class="btn btn-fill w-100">Register</button>
+            </a></div>
+            <div class="col-6 col-md-auto pl-0">
+              <button type="button" class="btn btn-fill btn-gray">Cancel</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </section>
+    <!-- end product-detail-page -->
+<script>
+  $("#Shipping-Address-Same").on('click',function(){
+    if($("#Shipping-Address-Same").is(':checked')){
+        $("#shipsa").val($("#streetadd").val());
+        $("#shipcity").val($("#city").val());
+        $("#shippostalode").val($("#postalcode").val());
+        $("#shipprovince").val($("#provunce").val());
+        $("#shipcountry").val($("#country").val());
+    }else{
+        $("#shipsa").val('');
+        $("#shipcity").val('');
+        $("#shippostalode").val('');
+        $("#shipprovince").val('');
+        $("#shipcountry").val('');
+    }
+  })
+</script>
+
+{% endblock %}
